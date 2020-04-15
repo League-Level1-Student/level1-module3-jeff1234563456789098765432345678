@@ -5,6 +5,9 @@ package _03_jukebox;
  */
 
 
+import java.awt.Button;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,7 +15,10 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -22,13 +28,19 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 
 public class Jukebox implements Runnable {
 
+	JButton button1 = new JButton();
+	JButton button2 = new JButton();
     public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-
+    		Song song = new Song("StrangerThings.mp3");
+    		Song song2 = new Song("Kids.mp3");
 		// 3. Play the Song
-
+    		//song.play();
+    		//song2.play();
+    		
+    		
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
 		 * choose which song to play. You can use can use a different button for
@@ -36,8 +48,31 @@ public class Jukebox implements Runnable {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
+    		JPanel panel = new JPanel();
+    		JFrame frame = new JFrame();
+    		frame.setVisible(true);
+    		panel.setVisible(true);
+    		panel.add(button2);
+    		panel.add(button1);
+    		frame.add(panel);
+    		frame.setTitle("jukebox");
+    		button1.addMouseListener((MouseListener) this);
+    		button2.addMouseListener((MouseListener) this);
+    		frame.pack();
+    		button2.setText("Intro");
+    		button1.setText("Kids");
+    		
     }
+
+    public void actionPerformed(ActionEvent e) {
     
+    	Button buttonPressed = (Button) e.getSource();
+    	if(buttonPressed.equals(button1)) {
+    		System.out.println("f");;
+    	}
+    		 
+    	
+    }
     
 	/* Use this method to add album covers to your Panel. */
 	private JLabel loadImage(String fileName) {
