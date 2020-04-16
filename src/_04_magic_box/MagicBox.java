@@ -7,6 +7,7 @@ package _04_magic_box;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Panel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -14,12 +15,15 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
-
+	JPanel panel = new JPanel();
+	JFrame frame = new JFrame();
+	
 	/*
 	 * We are going to hide secrets within the magic box. 
 	 * When the user clicks on a secret place, stuff will happen.
@@ -33,6 +37,8 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	 *    or the color of the image, then decide what action the Media Palace should take in each case. 
 	 *     backgroundImage.getRGB(e.getX(), e.getY()) will give you the color of the current pixel.
 	 */
+	
+	
 
 	BufferedImage backgroundImage;
 
@@ -54,6 +60,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.addMouseListener(this);
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -72,8 +79,11 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		JFrame imagePressed = (JFrame) e.getSource();
+		//System.out.println(backgroundImage.getRGB(e.getX(), e.getY()));
+		if(backgroundImage.getRGB(e.getX(), e.getY()) == -793411) {
+		System.out.println("dot clicked");
+		}
 	}
 
 	@Override
