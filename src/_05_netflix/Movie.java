@@ -42,7 +42,7 @@ public String getTicketPrice() {
 	public int compareTo(Movie otherMovie) {
 		int compareQuantity = otherMovie.getRating();
 
-		// return this.stars - compareQuantity; //ascending order
-		return compareQuantity - this.stars; // descending order
+		 return this.stars - compareQuantity; //ascending order
+		//return compareQuantity - this.stars;// descending order
 	}
 }
