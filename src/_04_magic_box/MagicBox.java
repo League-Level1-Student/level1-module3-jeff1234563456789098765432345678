@@ -20,6 +20,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import javazoom.jl.decoder.JavaLayerException;
+
+
+
+
 public class MagicBox extends JPanel implements Runnable, MouseListener {
 	JPanel panel = new JPanel();
 	JFrame frame = new JFrame();
@@ -52,7 +57,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 			System.err.println(w.getMessage());
 		}
 	}
-
+	
 	private void createUI() {
 		JFrame frame = new JFrame("The Magic Box contains many secrets...");
 		frame.add(this);
@@ -61,8 +66,11 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.addMouseListener(this);
+		
+		
+		
 	}
-
+	MediaPalace av = new MediaPalace();
 	private void loadBackgroundImage() throws Exception {
 		String imageFile = "src/_04_magic_box/magic-box.jpg";
 		try {
@@ -79,11 +87,19 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 		JFrame imagePressed = (JFrame) e.getSource();
 		//System.out.println(backgroundImage.getRGB(e.getX(), e.getY()));
 		if(backgroundImage.getRGB(e.getX(), e.getY()) == -793411) {
-		System.out.println("dot clicked");
-		}
+			av.speak("I see you don't try and hide, i always know where you are");
+			
+		}else if(backgroundImage.getRGB(e.getX(), e.getY()) == -13815242) {
+			av.speak("I feel bad for you because you spent so much time looking for this. I will play you a song");
+			av.playVideo("https://www.youtube.com/watch?v=u9AtfJz8bqM");
+		
+				}else if(backgroundImage.getRGB(e.getX(), e.getY()) == -10860222) {
+					av.speak("Good job now find the other 2 if you already did congrats");
+				}
 	}
 
 	@Override
